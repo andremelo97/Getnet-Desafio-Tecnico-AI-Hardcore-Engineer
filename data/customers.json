@@ -1,0 +1,85 @@
+{
+  "_comment": "FICTITIOUS mock data for the Customer Support tools. Dates are relative (days_ago). Settlement terms follow Getnet's public default (debit next business day, credit after 31 days, then every 30). Response codes are a mock catalog of common issuer codes; ADQ codes are Getnet terminal errors documented in the knowledge base.",
+  "customers": [
+    {
+      "user_id": "cliente1988",
+      "business_name": "Padaria Pão Dourado",
+      "document": "12.345.678/0001-90",
+      "city": "Porto Alegre",
+      "state": "RS",
+      "customer_since": "2021-03-15",
+      "settlement_terms": {
+        "debit_business_days": 1,
+        "credit_first_installment_days": 31,
+        "credit_installment_interval_days": 30,
+        "pix_instant": true
+      },
+      "receivables_advance": {"automatic": false, "eligible": true},
+      "bank_account": {"bank": "Santander (033)", "branch": "1234", "account": "****5678-9"},
+      "terminals": [
+        {
+          "serial": "GSM-2024-000123",
+          "model": "Get Smart",
+          "connectivity": "Wi-Fi",
+          "status": "offline",
+          "last_seen_hours_ago": 3,
+          "last_error": "ADQ 1-18 (sinal fraco)"
+        },
+        {
+          "serial": "GCL-2023-004567",
+          "model": "Get Clássica",
+          "connectivity": "Chip 3G",
+          "status": "online",
+          "last_seen_hours_ago": 0,
+          "last_error": null
+        }
+      ],
+      "transactions": [
+        {"id": "TX-1001", "days_ago": 1, "time": "07:12", "method": "debit", "brand": "Visa", "amount": 18.5, "status": "approved", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-1002", "days_ago": 1, "time": "08:03", "method": "pix", "amount": 32.0, "status": "approved", "terminal_serial": "GSM-2024-000123"},
+        {"id": "TX-1003", "days_ago": 1, "time": "09:41", "method": "credit", "brand": "Mastercard", "amount": 129.9, "status": "approved", "terminal_serial": "GSM-2024-000123"},
+        {"id": "TX-1004", "days_ago": 1, "time": "11:15", "method": "debit", "brand": "Elo", "amount": 46.75, "status": "approved", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-1005", "days_ago": 1, "time": "12:30", "method": "credit", "brand": "Visa", "amount": 360.0, "installments": 3, "status": "approved", "terminal_serial": "GSM-2024-000123"},
+        {"id": "TX-1006", "days_ago": 1, "time": "15:22", "method": "credit", "brand": "Amex", "amount": 88.0, "status": "declined", "response_code": "54", "terminal_serial": "GSM-2024-000123"},
+        {"id": "TX-1007", "days_ago": 1, "time": "17:48", "method": "pix", "amount": 15.0, "status": "approved", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-1008", "days_ago": 1, "time": "19:05", "method": "debit", "brand": "Mastercard", "amount": 72.4, "status": "approved", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-1101", "days_ago": 0, "time": "07:30", "method": "debit", "brand": "Visa", "amount": 22.0, "status": "approved", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-1102", "days_ago": 0, "time": "08:14", "method": "credit", "brand": "Mastercard", "amount": 245.0, "status": "declined", "response_code": "51", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-1103", "days_ago": 0, "time": "08:16", "method": "credit", "brand": "Mastercard", "amount": 245.0, "status": "declined", "response_code": "55", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-1104", "days_ago": 0, "time": "08:19", "method": "debit", "brand": "Mastercard", "amount": 245.0, "status": "approved", "terminal_serial": "GCL-2023-004567"},
+        {"id": "TX-0901", "days_ago": 3, "time": "10:02", "method": "credit", "brand": "Elo", "amount": 510.0, "installments": 6, "status": "approved", "terminal_serial": "GSM-2024-000123"},
+        {"id": "TX-0902", "days_ago": 3, "time": "16:40", "method": "debit", "brand": "Visa", "amount": 39.9, "status": "approved", "terminal_serial": "GCL-2023-004567"}
+      ]
+    },
+    {
+      "user_id": "cliente2000",
+      "business_name": "Ótica Boa Vista",
+      "document": "98.765.432/0001-10",
+      "city": "Recife",
+      "state": "PE",
+      "customer_since": "2019-08-01",
+      "settlement_terms": {
+        "debit_business_days": 1,
+        "credit_first_installment_days": 31,
+        "credit_installment_interval_days": 30,
+        "pix_instant": true
+      },
+      "receivables_advance": {"automatic": true, "eligible": true},
+      "bank_account": {"bank": "Banco do Brasil (001)", "branch": "4321", "account": "****1122-3"},
+      "terminals": [
+        {"serial": "GMN-2025-000777", "model": "Get Mini", "connectivity": "Chip 3G", "status": "online", "last_seen_hours_ago": 0, "last_error": null}
+      ],
+      "transactions": [
+        {"id": "TX-2001", "days_ago": 1, "time": "10:00", "method": "credit", "brand": "Visa", "amount": 890.0, "installments": 10, "status": "approved", "terminal_serial": "GMN-2025-000777"}
+      ]
+    }
+  ],
+  "response_codes": {
+    "05": {"meaning": "Not authorized by the card issuer (generic decline).", "recommended_action": "Ask the cardholder to contact their bank or pay with another card."},
+    "51": {"meaning": "Insufficient funds or credit limit.", "recommended_action": "Ask for another card or another payment method (debit, Pix)."},
+    "54": {"meaning": "Expired card.", "recommended_action": "Ask for a valid card."},
+    "55": {"meaning": "Wrong PIN entered.", "recommended_action": "Ask the cardholder to retry carefully; after repeated errors the issuer may block the card."},
+    "57": {"meaning": "Transaction not allowed for this card.", "recommended_action": "Ask for another card or another payment method."},
+    "91": {"meaning": "Card issuer temporarily unavailable.", "recommended_action": "Wait a few minutes and try again."}
+  }
+}

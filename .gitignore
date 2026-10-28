@@ -1,0 +1,22 @@
+# Secrets: the real keys live only in .env (prepared before the build, never committed)
+.env
+
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.pytest_cache/
+.ruff_cache/
+.venv
+
+# Claude Code local permissions (approvals given during a session)
+.claude/settings.local.json
+
+# Local vector store (rebuilt by `python -m app.knowledge.vectorstore`)
+.vectorstore/
+
+# Eval reports
+evals/reports/
