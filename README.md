@@ -1,5 +1,11 @@
 # Getnet multi-agent support
 
+> **Videos**
+>
+> - Solution walkthrough (up to 15 min): <https://youtu.be/_yjkB_KQyrI>
+> - Development session recording (complementary, within the 60 minutes):
+>   <https://youtu.be/AcEbuzerHjs>
+
 One HTTP endpoint for Getnet merchants, answered by four cooperating agents:
 
 - a **Router** that understands the message and picks who handles it;
